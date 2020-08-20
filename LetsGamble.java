@@ -1,53 +1,55 @@
 import java.util.*;
 class LetsGamble {
-	public static void main(String args[]) {
-		int initialAmount = 100;
-		int currentAmount = initialAmount;
-		int betAmount = 1;
-		int gambleResult = 0;
-		int ISWINNER = 0;
-		int dayCount=0;
-		List<Integer> dailyResultList  = new ArrayList<>();
-      Random random = new Random();
-		while(currentAmount < 150  && currentAmount > 50){
-			gambleResult = random.nextInt(2);
-			if(gambleResult==ISWINNER){
-		   	currentAmount+=betAmount;
-				dayCount++;
-				dailyResultList.add(gambleResult);
-			}
+    public static int STARTAMOUNT = 100;
+    public static int ISWINNER = 1;
 
-			else{
-			   currentAmount-=betAmount;
-				dayCount++;
-				dailyResultList.add(gambleResult);
-			}
-	
-			if(dayCount==20){
-				if(initialAmount>currentAmount)
-					System.out.println(initialAmount - currentAmount + " won  after 20 days");		
-				else
-               System.out.println(currentAmount - initialAmount + " lost  after 20 days");
-			}						
-		}
-		int sum=0;
-		System.out.println("The Monthly Sum of bet won is :");
-		
-		for(int i=1;i<31;i++){
-			if(i>9)
-				System.out.print(i+" ");
-			else
-				System.out.print(i+"  ");
-		}
-		System.out.println(" ");
+    public static void main(String args[]) {
+        List<Integer>  daysWon= new ArrayList<>();
+        monthlyResult(STARTAMOUNT);
+    }
 
-		for (int i=0;i<dailyResultList.size()-30;i+=30){
-			sum=0;
-			for(int j=i;j<i+30;j++)	{
-				sum += dailyResultList.get(j);
-				System.out.print(dailyResultList.get(j)+"  ");
-			}
-			System.out.println("WON = "+sum+" "+"LOST = "+(30-sum)+" AMOUNT WON = "+sum );			
-		}
-	}
+    private static  int monthlyResult(int initialAmount){
+        int winAmount=0,loseAmount=0,monthDayCount=1,winDayCount=0;
+        List<Integer>  daysWon= new ArrayList<>();
+        while(monthDayCount<=30) {
+            initialAmount = 100;
+            Random random = new Random();
+
+            while (initialAmount < 150 && initialAmount > 50) {
+                int result = random.nextInt(2);
+                if (result == ISWINNER)
+                    initialAmount++;
+                else
+                    initialAmount--;
+            }
+
+            if (initialAmount > 100) {
+                winAmount = loseAmount + (initialAmount - 100);
+            }
+            if (initialAmount < 100) {
+                loseAmount = loseAmount + (100 - initialAmount);
+            }
+            if (monthDayCount==20) {
+                System.out.println("In 20 Days : ");
+                System.out.print("    Won : :" + winAmount);
+                System.out.println("    Lost  : : " + loseAmount);
+            }
+            monthDayCount++;
+        }
+        System.out.print("DAYS WON : ");
+        for(int i=0;i<daysWon.size();i++){
+            if((int)daysWon.get(i)==1) {
+                winDayCount++;
+            }
+        }
+            System.out.println(winDayCount+" LOST DAYS : "+(30-winDayCount));
+        System.out.println(" ");
+
+        if(winAmount>loseAmount){
+            System.out.println("WON AT THE END OF THE MONTH : "+winAmount);
+            return winAmount;
+        }else
+            System.out.println("LOST AT THE END OF THE MONTH : "+loseAmount);
+        return loseAmount;
+    }
 }
