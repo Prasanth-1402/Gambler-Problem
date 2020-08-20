@@ -4,11 +4,25 @@ class LetsGamble {
     public static int ISWINNER = 1;
 
     public static void main(String args[]) {
-        List<Integer>  daysWon= new ArrayList<>();
-        monthlyResult(STARTAMOUNT);
+        Scanner scan = new Scanner(System.in);
+		  char userInput = 'y';
+		  while(true){ 
+        	 boolean proceed = monthlyResult(STARTAMOUNT);
+ 			 if(proceed == true){
+					System.out.println("Hurray!! You Won .... Wanna continue ??? ");
+	            System.out.println(" Press \'N\' or \'n\' to terminate");
+	            userInput = scan.nextLine().charAt(0);
+					if(userInput=='N'||userInput=='n')
+                    break;
+				  }
+			 if(proceed==false){
+                System.out.println("OOPS!! Sorry, You lost..! ");
+                break;
+            }		  
+			 }
     }
 
-    private static  int monthlyResult(int initialAmount){
+    private static  boolean monthlyResult(int initialAmount){
         int winAmount=0,loseAmount=0,monthDayCount=0,winDayCount=0;
         int[]  daysWon= new int[30];
         HashMap<Integer,Integer> map = new HashMap<>();
@@ -122,9 +136,9 @@ class LetsGamble {
         
         if(winAmount>loseAmount){
             System.out.println("WON AT THE END OF THE MONTH : "+winAmount);
-            return winAmount;
+            return true;
         }else
             System.out.println("LOST AT THE END OF THE MONTH : "+loseAmount);
-        return loseAmount;
+        return false;
     }
 }
