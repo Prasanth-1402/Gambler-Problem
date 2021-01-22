@@ -59,9 +59,7 @@ class LetsGamble {
         System.out.print("DAYS WON : ");
 
             System.out.println(winDayCount+" LOST DAYS : "+(30-winDayCount));
-//        System.out.println(" ");
         for(int i=0;i<daysWon.length;i++){
-//            System.out.print(i+" = "+daysWon[i]+"; ");
             if((int)daysWon[i]==1) {
                 winDayCount++;
             }
@@ -70,7 +68,6 @@ class LetsGamble {
         map.put(-1,0);
         Integer curr = null;
         int count = 0;
-//        System.out.print("{");
         for (int val : daysWon) {
             if (curr == null) {
                 curr = val;
@@ -80,7 +77,6 @@ class LetsGamble {
                 if(count>map.get(curr))
                     map.put(curr,count);
 
-//                System.out.print("(" + curr + ", " + count + ")");
                 curr = val;
                 count = 1;
             }
@@ -88,14 +84,8 @@ class LetsGamble {
                 ++count;
             }
         }
-//        System.out.print("(" + curr + ", " + count + ")");
-//        System.out.print("}");
-//        System.out.println(" ");
-
         System.out.println(" ");
-//        for(int i=-1;i<2;i+=2){
-//            System.out.println(i+" = "+map.get(i));
-//        }
+
 
         int countDay =0, MaxLoseDay =0;
         while(countDay <map.get(-1)){
@@ -104,9 +94,7 @@ class LetsGamble {
             for(int i=0;i<daysWon.length-1;i++){
                 if(daysWon[i]==-1 && daysWon[i+1]==-1){
                     countDay++;
-//                    System.out.println("count increases to "+countDay+" at "+i+" and "+(i+1));
                     if(countDay ==map.get(-1)){
-//                        System.out.println(countDay+" "+map.get(-1)+" "+i+" "+(i+1));
                         MaxLoseDay =i+1;
                         break;
                     }
@@ -123,9 +111,7 @@ class LetsGamble {
             for(int i=0;i<daysWon.length-1;i++){
                 if(daysWon[i]==1 && daysWon[i+1]==1){
                     countDay++;
-//                    System.out.println("count increases to "+countDay+"  at "+i+" and "+(i+1));
                     if(countDay ==map.get(1)){
-//                        System.out.println(countDay+" "+map.get(1)+" "+i+" "+(i+1));
                         maxGainDay =i+1;
                         break;
                     }
