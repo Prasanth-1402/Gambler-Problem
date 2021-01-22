@@ -7,19 +7,19 @@ class LetsGamble {
         Scanner scan = new Scanner(System.in);
 		  char userInput = 'y';
 		  while(true){ 
-        	 boolean proceed = monthlyResult(STARTAMOUNT);
- 			 if(proceed == true){
-					System.out.println("Hurray!! You Won .... Wanna continue ??? ");
-	            System.out.println(" Press \'N\' or \'n\' to terminate");
-	            userInput = scan.nextLine().charAt(0);
-					if(userInput=='N'||userInput=='n')
-                    break;
-				  }
-			 if(proceed==false){
-                System.out.println("OOPS!! Sorry, You lost..! ");
-                break;
-            }		  
-			 }
+			 boolean proceed = monthlyResult(STARTAMOUNT);
+			 if(proceed == true){
+			    System.out.println("Hurray!! You Won .... Wanna continue ??? ");
+			    System.out.println(" Press \'N\' or \'n\' to terminate");
+			    userInput = scan.nextLine().charAt(0);
+			    if(userInput=='N'||userInput=='n')
+				    break;
+			  }
+			  if(proceed==false){
+				System.out.println("OOPS!! Sorry, You lost..! ");
+				break;
+			  }		  
+		 }
     }
 
     private static  boolean monthlyResult(int initialAmount){
